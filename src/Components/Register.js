@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Container, Form, Button } from "react-bootstrap";
 
-const API_BASE_URL =
-  "http://ip172-19-0-29-ch3a122e69v000epu0d0-8077.direct.labs.play-with-docker.com";
+const API_BASE_URL = "http://localhost:8077";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -22,24 +22,32 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <Container>
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Register</button>
-      </form>
-    </div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="email">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Register
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
