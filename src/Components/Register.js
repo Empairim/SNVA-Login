@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const API_BASE_URL = "http://localhost:8077";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // this is gonna do its name for me
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ const Register = () => {
         password,
       });
       alert("User Registered Successfully");
+      navigate("/login");
     } catch (err) {
       alert("Error registering user");
     }

@@ -4,8 +4,11 @@ import Register from "./Components/Register";
 import Navigation from "./Components/Navigation";
 import HomePage from "./Components/HomePage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import useAuth from "./useAuth.js";
 
 function App() {
+  //now this custom hook can be used to get the isAuthenticated value
+  const isAuthenticated = useAuth();
   return (
     <Router>
       {" "}
@@ -13,10 +16,16 @@ function App() {
       <Routes>
         {" "}
         {/* this switches the routes when you have multiple components grouped together */}
-        <Route path="/" element={<Navigation to="/login" />} />
+        <Route
+          path="/"
+          element={isAuthenticated ? <Navigation to="/home" /> : <Login />}
+        />
         <Route path="/signup" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route
+          path="/home"
+          element={isAuthenticated ? <HomePage /> : <Navigation to="/login" />}
+        />
       </Routes>
     </Router>
   );
