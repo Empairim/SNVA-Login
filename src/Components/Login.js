@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { login } from "../authSlice";
-import { loginUser } from "../api.js"; // Import the loginUser function
+import { loginUser } from "../APIUtils/api.js"; // Import the loginUser function
 
 const Login = () => {
   const [email, setEmail] = useState("");

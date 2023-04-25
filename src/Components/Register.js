@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
-import { registerUser } from "../api"; // Import the registerUser function
+import { registerUser } from "../APIUtils/api"; // Import the registerUser function
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ const Register = () => {
     try {
       await registerUser(email, password);
       alert("User Registered Successfully");
-      //   navigate("/login");
+      navigate("/login");
     } catch (err) {
       alert("Error registering user");
     }
