@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { login } from "../authSlice";
-
-const API_BASE_URL = "http://localhost:8077";
+import { loginUser } from "../api.js"; // Import the loginUser function
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,27 +11,20 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch(); // this is the redux dispatch function
 
-  // Updated to dispatch the login action on successful login
+  // Updated to use the loginUser function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}/api/v1/user/authenticate`,
-        {
-          email,
-          password,
-        }
-      );
+      const response = await loginUser(email, password);
 
-      if (response.data.status === "success") {
-        const token = response.data.response;
-        // console.log("Token:", token); // Add this line to log the token value this line was just to test if my token was working since its givien me a tough time lol
+      if (response.status === "success") {
+        const token = response.response;
         dispatch(login(token));
         localStorage.setItem("authToken", token);
         navigate("/home");
       } else {
         // Display an error message based on the API response
-        alert(response.data.response);
+        alert(response.response);
       }
     } catch (error) {
       alert("Error logging in.");
