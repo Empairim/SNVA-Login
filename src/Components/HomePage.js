@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Import axios to make API requests
+import axios from "axios";
 import confetti from "canvas-confetti";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { logout } from "../authSlice";
 
-const API_BASE_URL = "http://localhost:8077"; // Add the base URL for your API
+const API_BASE_URL = "http://localhost:8077";
 
 const HomePage = () => {
   const [email, setEmail] = useState("");
@@ -34,8 +34,6 @@ const HomePage = () => {
               },
             }
           );
-          console.log(response.data);
-          // Add a conditional check before attempting to split the email
           if (response.data && response.data.email) {
             const userEmail = response.data.email.split("@")[0];
             setEmail(userEmail);
@@ -47,9 +45,8 @@ const HomePage = () => {
         }
       }
     };
-    //
 
-    fetchUserData(); // Call the function to fetch user data
+    fetchUserData();
   }, []);
 
   const handleLogout = () => {
@@ -59,12 +56,25 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome to the Home Page, {email}!</h1>
-      <Button variant="danger" onClick={handleLogout}>
-        Logout
-      </Button>
-    </div>
+    <Container className="mt-5">
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <Card className="text-center shadow">
+            <Card.Body>
+              <Card.Title>
+                <h1>Welcome, {email}!</h1>
+              </Card.Title>
+              <Card.Text>
+                You've successfully logged in to the application.
+              </Card.Text>
+              <Button variant="danger" onClick={handleLogout}>
+                Logout
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
