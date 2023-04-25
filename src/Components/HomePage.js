@@ -47,35 +47,32 @@ const HomePage = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#">Random Web Name 🤪</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavDropdown
-              title={
-                profileImage ? (
-                  <Image
-                    src={profileImage}
-                    alt="profile"
-                    width={30}
-                    height={30}
-                    roundedCircle
-                  />
-                ) : (
-                  <div className="default-profile-image" />
-                )
-              }
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item href="#">Profile</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Nav>
-            <Nav.Link>Welcome, {email}!</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
+        <Navbar.Brand className="me-auto" href="#">
+          Random Web Name 🤪
+        </Navbar.Brand>
+        <Nav className="d-flex align-items-center">
+          <Nav.Link className="me-3">Welcome, {email}!</Nav.Link>
+          <NavDropdown
+            title={
+              profileImage ? (
+                <Image
+                  src={profileImage}
+                  alt="profile"
+                  width={30}
+                  height={30}
+                  roundedCircle
+                />
+              ) : (
+                <div className="default-profile-image" />
+              )
+            }
+            id="basic-nav-dropdown"
+          >
+            <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
       </Container>
     </Navbar>
   );
