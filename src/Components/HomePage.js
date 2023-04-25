@@ -34,6 +34,7 @@ const HomePage = () => {
               },
             }
           );
+          console.log(response.data);
           // Add a conditional check before attempting to split the email
           if (response.data && response.data.email) {
             const userEmail = response.data.email.split("@")[0];
