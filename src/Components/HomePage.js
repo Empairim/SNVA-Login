@@ -1,19 +1,48 @@
 import React from "react";
-
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 const HomePage = () => {
   return (
     <>
-      <Container
-        fluid
-        className="d-flex justify-content-center align-items-center"
-        style={{ height: "100vh" }}
-      >
-        <div>
-          <h1>Welcome 😀</h1>
-          <p>Here's some content for the homepage.</p>
-        </div>
+      <Container fluid className="hero-section">
+        <Container
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "100vh" }}
+        >
+          <div>
+            <h1>Welcome to Some Random Web Name 😄</h1>
+            <p>Explore the amazing features and join our community!</p>
+          </div>
+        </Container>
+      </Container>
+
+      <Container>
+        <Row className="my-5">
+          <Col>
+            <Card className="text-center">
+              <Card.Body>
+                <Card.Title>Feature 1</Card.Title>
+                <Card.Text>Short description of the feature.</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="text-center">
+              <Card.Body>
+                <Card.Title>Feature 2</Card.Title>
+                <Card.Text>Short description of the feature.</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="text-center">
+              <Card.Body>
+                <Card.Title>Feature 3</Card.Title>
+                <Card.Text>Short description of the feature.</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Container>
     </>
   );
