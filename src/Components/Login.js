@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Form,
+  Button,
+  Row,
+  Col,
+  Spinner,
+} from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { login } from "../authSlice";
-import { loginUser } from "../APIUtils/api.js"; // Import the loginUser function
+import { loginUser } from "../APIUtils/api.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // state to manage loading spinner
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // this is the redux dispatch function
+  const dispatch = useDispatch();
 
-  // Updated to use the loginUser function
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // start loading spinner when login button is clicked
     try {
       const response = await loginUser(email, password);
 
@@ -23,12 +32,12 @@ const Login = () => {
         localStorage.setItem("authToken", token);
         navigate("/home");
       } else {
-        // Display an error message based on the API response
         alert(response.response);
       }
     } catch (error) {
       alert("Error logging in.");
     }
+    setIsLoading(false); // stop loading spinner when login request is complete
   };
 
   return (
@@ -55,13 +64,17 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-            <Button variant="primary" type="submit" className="w-100">
-              Login
+            <Button
+              variant="primary"
+              type="submit"
+              className="w-100"
+              disabled={isLoading}
+            >
+              {isLoading ? <Spinner animation="border" size="sm" /> : "Login"}
             </Button>
           </Form>
           <Row className="mt-3">
             <Col className="text-center">
-              {/* Link to navigate to the Register component */}
               <Link to="/signup">Don't have an account? Register</Link>
             </Col>
           </Row>

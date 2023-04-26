@@ -1,21 +1,33 @@
 import React, { useState } from "react";
-import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Form,
+  Button,
+  Row,
+  Col,
+  Spinner,
+} from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../APIUtils/api"; // Import the registerUser function
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Set isLoading to true when the form is submitted
     try {
       await registerUser(email, password);
       alert("User Registered Successfully");
       navigate("/login");
     } catch (err) {
       alert("Error registering user");
+    } finally {
+      setIsLoading(false); // Set isLoading to false after the API call is completed
     }
   };
 
@@ -43,8 +55,13 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
+            {/* Display a spinner icon when isLoading is true */}
             <Button variant="primary" type="submit" className="w-100">
-              Register
+              {isLoading ? (
+                <Spinner animation="border" size="sm" className="me-2" />
+              ) : (
+                "Register"
+              )}
             </Button>
           </Form>
           <Row className="mt-3">
