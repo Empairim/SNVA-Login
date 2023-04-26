@@ -11,7 +11,7 @@ import HomePage from "./Components/HomePage";
 import Profile from "./Components/Profile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import useAuth from "./useAuth.js";
-import NavBar from "./Components/NavBar"; // Import NavBar component
+import MainLayout from "./Components/MainLayout"; // Import MainLayout component
 import "./App.css";
 
 function App() {
@@ -20,30 +20,31 @@ function App() {
 
   return (
     <Router>
-      <NavBar />{" "}
-      {/* Include NavBar component, which will be displayed on all pages */}
-      <Routes>
-        {/* Define the routes for the app */}
-        {/* If the user is authenticated, redirect to the home page; otherwise, display the HomePage component */}
-        <Route
-          path="/"
-          element={isAuthenticated ? <Navigate to="/home" /> : <HomePage />}
-        />
-        {/* Route for the signup page */}
-        <Route path="/signup" element={<Register />} />
-        {/* Route for the login page */}
-        <Route path="/login" element={<Login />} />
-        {/* Route for the profile page; if the user is not authenticated, redirect to the login page */}
-        <Route
-          path="/profile"
-          element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
-        />
-        {/* Route for the home page; if the user is not authenticated, redirect to the login page */}
-        <Route
-          path="/home"
-          element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
-        />
-      </Routes>
+      <MainLayout>
+        {/* MainLayout component wraps the Routes, it includes NavBar and Footer */}
+        <Routes>
+          {/* Define the routes for the app */}
+          {/* If the user is authenticated, redirect to the home page; otherwise, display the HomePage component */}
+          <Route
+            path="/"
+            element={isAuthenticated ? <Navigate to="/home" /> : <HomePage />}
+          />
+          {/* Route for the signup page */}
+          <Route path="/signup" element={<Register />} />
+          {/* Route for the login page */}
+          <Route path="/login" element={<Login />} />
+          {/* Route for the profile page; if the user is not authenticated, redirect to the login page */}
+          <Route
+            path="/profile"
+            element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
+          />
+          {/* Route for the home page; if the user is not authenticated, redirect to the login page */}
+          <Route
+            path="/home"
+            element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
+          />
+        </Routes>
+      </MainLayout>
     </Router>
   );
 }
