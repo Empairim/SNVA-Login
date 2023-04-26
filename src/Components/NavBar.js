@@ -75,7 +75,7 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar fixed="top" bg="red" expand="lg">
+    <Navbar fixed="top" bg="light" expand="lg">
       <Container>
         <Navbar.Brand
           className="me-auto"
