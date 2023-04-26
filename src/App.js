@@ -1,5 +1,4 @@
 // App.js
-import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,9 +9,10 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import HomePage from "./Components/HomePage";
 import Profile from "./Components/Profile";
-import MainLayout from "./Components/MainLayout"; // Import the MainLayout component
 import "bootstrap/dist/css/bootstrap.min.css";
 import useAuth from "./useAuth.js";
+import NavBar from "./Components/NavBar"; // Import NavBar component
+import "./App.css";
 
 function App() {
   // Now this custom hook can be used to get the isAuthenticated value
@@ -20,29 +20,28 @@ function App() {
 
   return (
     <Router>
+      <NavBar />{" "}
+      {/* Include NavBar component, which will be displayed on all pages */}
       <Routes>
-        {/* Public routes */}
-        <Route path="/signup" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-
-        {/* Routes with MainLayout */}
+        {/* Define the routes for the app */}
+        {/* If the user is authenticated, redirect to the home page; otherwise, display the HomePage component */}
         <Route
-          path="/*"
-          element={
-            isAuthenticated ? (
-              <MainLayout>
-                {/* Add all routes that should have the NavBar here */}
-                <Routes>
-                  <Route path="/" element={<Navigate to="/home" />} />
-                  <Route path="/home" element={<HomePage />} />
-                  <Route path="/profile" element={<Profile />} />
-                </Routes>
-              </MainLayout>
-            ) : (
-              // Redirect to the login page if the user is not authenticated
-              <Navigate to="/login" />
-            )
-          }
+          path="/"
+          element={isAuthenticated ? <Navigate to="/home" /> : <HomePage />}
+        />
+        {/* Route for the signup page */}
+        <Route path="/signup" element={<Register />} />
+        {/* Route for the login page */}
+        <Route path="/login" element={<Login />} />
+        {/* Route for the profile page; if the user is not authenticated, redirect to the login page */}
+        <Route
+          path="/profile"
+          element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
+        />
+        {/* Route for the home page; if the user is not authenticated, redirect to the login page */}
+        <Route
+          path="/home"
+          element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

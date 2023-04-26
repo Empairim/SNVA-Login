@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { fetchUserData } from "../APIUtils/api";
+import { useNavigate } from "react-router-dom";
 
 const selectToken = (state) => state.auth.token;
 
@@ -20,8 +21,13 @@ const Profile = () => {
   }, [token]);
 
   return (
-    <Container className="py-4">
-      <Card>
+    <Container
+      className="py-4 d-flex justify-content-center"
+      style={{ marginTop: "4rem" }}
+    >
+      <Card
+        style={{ width: "50%", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
+      >
         <Card.Body>
           <Card.Title>Profile Information</Card.Title>
           {userData && (

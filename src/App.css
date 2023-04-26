@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+/* App.css */
+
+/* Add padding to the top of the body element for small screens */
+@media (max-width: 991.98px) {
+  body {
+    padding-top: 4rem;
+  }
+}
