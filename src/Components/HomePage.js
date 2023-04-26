@@ -11,7 +11,7 @@ const HomePage = () => {
         style={{ height: "100vh" }}
       >
         <div>
-          <h1>Welcome to my App</h1>
+          <h1>Welcome 😀</h1>
           <p>Here's some content for the homepage.</p>
         </div>
       </Container>
