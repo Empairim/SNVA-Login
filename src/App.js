@@ -11,11 +11,7 @@ function App() {
   const isAuthenticated = useAuth();
   return (
     <Router>
-      {" "}
-      {/*this wraps the app and provides routing functionality*/}
       <Routes>
-        {" "}
-        {/* this switches the routes when you have multiple components grouped together */}
         <Route
           path="/"
           element={isAuthenticated ? <Navigation to="/home" /> : <Login />}

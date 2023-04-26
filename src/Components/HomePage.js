@@ -5,6 +5,7 @@ import { Container, Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { logout } from "../authSlice";
 import { fetchUserData } from "../APIUtils/api";
+import "../styles/navbar.css";
 
 const HomePage = () => {
   const [email, setEmail] = useState("");
