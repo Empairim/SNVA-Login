@@ -13,6 +13,7 @@ const NavBar = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // This useEffect fetches the user data and sets the email and profile image
   useEffect(() => {
     const confettiSettings = {
       particleCount: 100,
@@ -45,10 +46,16 @@ const NavBar = () => {
     fetchUser();
   }, []);
 
+  // This function handles the logout action and navigates to the login page
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     dispatch(logout());
     navigate("/login");
+  };
+
+  // This function handles navigating to the profile page
+  const handleProfileClick = () => {
+    navigate("/profile");
   };
 
   return (
@@ -74,7 +81,10 @@ const NavBar = () => {
                 className="me-3"
               />
               <NavDropdown title="" id="basic-nav-dropdown" align="end">
-                <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                {/* Added handleProfileClick function to navigate to the profile page */}
+                <NavDropdown.Item onClick={handleProfileClick}>
+                  Profile
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogout}>
                   Logout

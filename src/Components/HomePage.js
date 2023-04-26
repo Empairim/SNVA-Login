@@ -1,11 +1,10 @@
 import React from "react";
-import NavBar from "./NavBar";
+
 import { Container } from "react-bootstrap";
 
 const HomePage = () => {
   return (
     <>
-      <NavBar />
       <Container
         fluid
         className="d-flex justify-content-center align-items-center"
