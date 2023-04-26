@@ -7,11 +7,10 @@ const HomePage = () => {
       <Container fluid className="hero-section">
         <Container
           className="d-flex justify-content-center align-items-center"
-          style={{ height: "100vh" }}
+          style={{ height: "50vh" }}
         >
           <div>
             <h1>Welcome to Some Random Web Name 😄</h1>
-            <p>Explore the amazing features and join our community!</p>
           </div>
         </Container>
       </Container>
