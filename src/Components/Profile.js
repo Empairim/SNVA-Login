@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Container, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { fetchUserData } from "../APIUtils/api";
-import { useNavigate } from "react-router-dom";
 
 const selectToken = (state) => state.auth.token;
 
